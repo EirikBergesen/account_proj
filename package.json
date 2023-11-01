@@ -1,0 +1,20 @@
+{
+  "name": "javascript_and_stuff",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "run": "tsc src/index.ts && node src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^6.9.1",
+    "@typescript-eslint/parser": "^6.9.1",
+    "eslint": "^8.52.0"
+  },
+  "dependencies": {
+    "prompt-sync": "^4.2.0"
+  }
+}
