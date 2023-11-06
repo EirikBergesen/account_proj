@@ -1,37 +1,6 @@
-// https://react.dev/learn/tutorial-tic-tac-toe
-
-// usestate is a special fuction that you can call from a component
-// to allow it to 'remember things'
 import { useState } from "react";
 
-// Default keyword tells other files this is 
-// the main function of this file
-
-// export keyword makes this function available outside of 
-// this file
-
-
-/*
-
-This code creates a react component. 
-In React, a component is a piece of reusable code that 
-represents a part of a user interface. 
-Components are used to render, manage, and update the 
-UI elements in your application. 
-
-export default function Square() {
-  return <button className="square">X</button>;
-  / This returns a button. <button> is a jsx element
-  / square is a css class, classname is css styling
-}
-*/
-
 function Board( { xIsNext, squares, onPlay }) {
-  // State is a way to store data in a component
-  // private to that component
-  // const [squares, setSquares] = useState(Array(9).fill(null));
-  // const [xIsNext, setxIsNext] = useState(true);
-
   const winner = calculateVinner(squares);
   let status;
   if (winner) {
@@ -45,7 +14,6 @@ function Board( { xIsNext, squares, onPlay }) {
       return;
     }
     const nextSquares = [...squares];
-    // nextSquares = squares.slice();
     if (xIsNext) {
       nextSquares[squareIndex] = 'X';
     }
@@ -54,11 +22,6 @@ function Board( { xIsNext, squares, onPlay }) {
     }
     onPlay(nextSquares)
   }
-    
-    // setxIsNext(!xIsNext);
-    // setSquares(newSquares);
-    // setSquare will re-render component, as well as child components, board, and squares
-  
 
   return (
     <>
@@ -79,14 +42,9 @@ function Board( { xIsNext, squares, onPlay }) {
       <Square value={squares[8]} onSquareClick={() => handleClick(8)} />
     </div>
     </>
-    /*
-    fragments <></> are used to return multiple adjacent jsx elements
-    */
   );
 }
 
-// function Square({ value }) { // { value } indicates this component can be passed a prop called value
-  // Functions need to start with capital letters.
 
 function Square({ value, onSquareClick }) {
   return <button
@@ -95,27 +53,8 @@ function Square({ value, onSquareClick }) {
     >
       {value}
   </button>
-  /*
-  // null here is a initial value
-  const [value, setValue] = useState(null);
-  
-
-  function handleClick() {
-    console.log('Clicked!');
-    setValue('X');
-  }
-  return (
-    <button
-      className="square"
-      onClick={handleClick}
-      >
-      {value}
-    </button>
-  );
-  */
 }
-// function calculateVinner(squares) {
-const calculateVinner = (squares) => {
+function calculateVinner(squares) {
   const winningLines = [
     [0, 1, 2], // top row
     [3, 4, 5], // middle row
@@ -167,21 +106,6 @@ export default function Game() {
       description = 'Go to game start';
     }
     return (
-      /*
-      'key' is a special and preserved property in react.
-      when an element is created, react extracts the key property and stores the key 
-      directly on the returned element.
-      React automatically uses key to decide which components to update.
-
-      It’s strongly recommended that you assign proper keys whenever you build dynamic lists.
-      If you don’t have an appropriate key, you may want to consider restructuring your data so that you do.
-
-      If no key is specified, React will report an error and use the array index as a key by default.
-      Using the array index as a key is problematic when trying to re-order a list’s items or inserting/removing list items.
-      Explicitly passing key={i} silences the error but has the same problems as array indices and is not recommended in most cases.
-
-      Keys do not need to be globally unique; they only need to be unique between components and their siblings.
-      */
       <li key={move}>
           <button onClick={() => jumpTo(move)}>{description}</button>
       </li>
