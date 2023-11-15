@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 
 
@@ -18,7 +17,10 @@ function FilterableProductTable({ products }) {
 function SearchBar({database}) {
   return (
     <form>
-    <input type="text" placeholder="Search..." />
+    <input
+    type="text"
+    placeholder="Search..."
+    />
     <label>
       <input type="checkbox" />
       {' '}
