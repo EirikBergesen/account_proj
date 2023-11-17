@@ -48,11 +48,20 @@ function SearchBar({inStockOnly, onChangeInStockOnly, filterText, onChangeFilter
 }
 
 
-function ProductTable( {products} ) {
+function ProductTable( {products, filterText, inStockOnly} ) {
   const rows = [];
   let lastCategory = null;
 
   products.forEach((product) => {
+    if ((!product.stocked && inStockOnly)) {
+      return;
+    }
+
+    console.log(product.name.indexOf(filterText), product.name, filterText);
+    if ((product.name).toLowerCase().indexOf(filterText.toLowerCase()) === -1) {
+      return;
+    }
+
     if (product.category !== lastCategory) {
       rows.push(
         <ProductCategoryRow
@@ -64,7 +73,7 @@ function ProductTable( {products} ) {
     rows.push(
       <ProductRow
       product={product}
-      key={product.name}
+      key={[product.category, product.name]}
       />
     );
     lastCategory = product.category;
